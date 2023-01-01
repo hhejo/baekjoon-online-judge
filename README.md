@@ -1,14 +1,8 @@
 # README.md
 
-
-
 # 문제집
 
-
-
 ## 그래프 탐색
-
-
 
 ### 실버
 
@@ -48,11 +42,8 @@
 
 [16953 A → B](https://www.acmicpc.net/problem/16953) : 현재 숫자부터 목표 숫자까지 주어진 연산을 최소한으로 해서 도달하기
 
-
-
 ### 골드
 
 [ABCDE](https://www.acmicpc.net/problem/13023) : DFS로 깊이 계산하기
 
 [16929 Two Dots](https://www.acmicpc.net/problem/16929) : DFS로 깊이 계산하고 사이클 확인하기
-
