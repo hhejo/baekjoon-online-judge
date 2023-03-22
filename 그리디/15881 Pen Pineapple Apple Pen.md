@@ -1,8 +1,19 @@
-# 15881 Pen Pineapple Apple Pen
+# [15881 Pen Pineapple Apple Pen](https://www.acmicpc.net/problem/15881)
+
+### 🥉 1
+
+### 분류
+
+- 문자열
+- 그리디 알고리즘
+
+### 풀이 날짜
+
+- 230305 일
 
 ---
 
-### CODE
+## CODE
 
 ```python
 import sys
@@ -40,4 +51,4 @@ solve()
 
 ```
 
-### 해설
+## 해설
