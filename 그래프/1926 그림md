@@ -1,0 +1,64 @@
+# [1926 그림](https://www.acmicpc.net/problem/1926)
+
+### 🥈 1
+
+### 분류
+
+- 그래프 이론
+- 그래프 탐색
+- 너비 우선 탐색
+- 깊이 우선 탐색
+
+### 풀이 날짜
+
+- 230624 토
+
+---
+
+## CODE 1
+
+```python
+import sys
+
+input = sys.stdin.readline
+
+
+def dfs(n, m, graph, sx, sy, v):
+    dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)
+    stk = [(sx, sy)]
+    v[sx][sy] = True
+    cnt = 1
+    while stk:
+        cx, cy = stk.pop()
+        for i in range(4):
+            nx, ny = cx + dx[i], cy + dy[i]
+            if 0 <= nx < n and 0 <= ny < m and graph[nx][ny] == 1 and not v[nx][ny]:
+                stk.append((nx, ny))
+                v[nx][ny] = True
+                cnt += 1
+    return cnt
+
+
+n, m = map(int, input().split())
+graph = [list(map(int, input().split())) for _ in range(n)]
+
+v = [[False] * m for _ in range(n)]
+arr = []
+for x in range(n):
+    for y in range(m):
+        if not v[x][y] and graph[x][y] == 1:
+            cnt = dfs(n, m, graph, x, y, v)
+            arr.append(cnt)
+
+if len(arr) == 0:
+    print(0, 0, sep='\n')
+else:
+    print(len(arr), max(arr), sep='\n')
+
+```
+
+## 해설 1
+
+그림이 없으면 0개에, 넓이를 0으로
+
+`46836KB`, `320ms`
