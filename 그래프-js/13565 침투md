@@ -1,0 +1,111 @@
+# [13565 침투](https://www.acmicpc.net/problem/13565)
+
+### 🥈 1
+
+### 분류
+
+- 그래프 이론
+- 그래프 탐색
+- 너비 우선 탐색
+- 깊이 우선 탐색
+
+### 풀이 날짜
+
+- 240203 토
+
+---
+
+## CODE 1
+
+```javascript
+function solution(m, n, g) {
+  const v = new Array(m).fill(0).map(() => new Array(n).fill(0)),
+    dx = [-1, 1, 0, 0],
+    dy = [0, 0, -1, 1];
+  for (let y = 0; y < n; y++) {
+    if (g[0][y] === 0 && v[0][y] === 0) dfs(0, y);
+  }
+
+  function dfs(cx, cy) {
+    v[cx][cy] = 1;
+    for (let i = 0; i < 4; i++) {
+      const [nx, ny] = [cx + dx[i], cy + dy[i]];
+      if (nx < 0 || m <= nx || ny < 0 || n <= ny) continue;
+      if (g[nx][ny] === 1 || v[nx][ny] === 1) continue;
+      dfs(nx, ny);
+    }
+  }
+
+  const ans = v.at(-1).some((a) => a === 1) ? "YES" : "NO";
+  console.log(ans);
+}
+
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "src/input.txt";
+const stdin = fs.readFileSync(filePath).toString().trim().split("\n");
+const input = (() => {
+  let line = 0;
+  return () => stdin[line++];
+})();
+const [[m, n], g] = [input().split(" ").map(Number), []];
+for (let i = 0; i < m; i++) {
+  const line = input().split("").map(Number);
+  g.push(line);
+}
+solution(m, n, g);
+```
+
+## 해설 1
+
+`89288KB`, `456ms`
+
+---
+
+## CODE 2
+
+```javascript
+function solution(m, n, g) {
+  const v = new Array(m).fill(0).map(() => new Array(n).fill(0));
+  for (let y = 0; y < n; y++) {
+    if (g[0][y] === 0 && v[0][y] === 0) dfs(0, y);
+  }
+
+  function dfs(sx, sy) {
+    const stk = [[sx, sy]],
+      dx = [-1, 1, 0, 0],
+      dy = [0, 0, -1, 1];
+    v[sx][sy] = 1;
+    while (stk.length > 0) {
+      const [cx, cy] = stk.pop();
+      for (let i = 0; i < 4; i++) {
+        const [nx, ny] = [cx + dx[i], cy + dy[i]];
+        if (nx < 0 || m <= nx || ny < 0 || n <= ny) continue;
+        if (g[nx][ny] === 1 || v[nx][ny] === 1) continue;
+        stk.push([nx, ny]);
+        v[nx][ny] = 1;
+      }
+    }
+  }
+
+  const ans = v.at(-1).some((a) => a === 1) ? "YES" : "NO";
+  console.log(ans);
+}
+
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "src/input.txt";
+const stdin = fs.readFileSync(filePath).toString().trim().split("\n");
+const input = (() => {
+  let line = 0;
+  return () => stdin[line++];
+})();
+const [[m, n], g] = [input().split(" ").map(Number), []];
+for (let i = 0; i < m; i++) {
+  const line = input().split("").map(Number);
+  g.push(line);
+}
+solution(m, n, g);
+```
+
+## 해설 2
+
+`71192KB`, `416ms`
