@@ -1,0 +1,37 @@
+# [1676 팩토리얼 0의 개수](https://www.acmicpc.net/problem/1676)
+
+### 🥈 5
+
+### 분류
+
+- 수학
+
+### 풀이 날짜
+
+- 240219 월
+
+---
+
+## CODE 1
+
+```javascript
+function solution(n) {
+  const ans = Math.floor(n / 5) + Math.floor(n / 25) + Math.floor(n / 125);
+  console.log(ans);
+}
+///////////////////////////////////////////////////////////////////////////////
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "src/input.txt";
+const stdin = fs.readFileSync(filePath).toString().trim().split("\n");
+const input = (() => {
+  let line = 0;
+  return () => stdin[line++];
+})();
+///////////////////////////////////////////////////////////////////////////////
+const n = +input();
+solution(n);
+```
+
+## 해설 1
+
+`9340KB`, `136ms`
